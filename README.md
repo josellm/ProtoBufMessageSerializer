@@ -6,6 +6,10 @@ Example:
 
 var bus	= ServiceBusFactory.New(sbc => {
 											sbc.UseRabbitMq();
-											sbc.ReceiveFrom("rabbitmq://kittens");
+											sbc.ReceiveFrom("rabbitmq://localhost/kittens");
 											sbc.UseProtoBufSerializer();
 		                             	});
+										
+//You need to decorate your message classes with protobuf attributes or you can add the type dynamically to protobuf model:
+
+	ProtoBufMessageSerializer.AddMessageType<TMessage>();
